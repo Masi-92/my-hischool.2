@@ -1,16 +1,73 @@
-import classModel from "../models/class.model"; 
+import classModel from "../models/class.model";
 import userModel from "../models/user.model";
-
+import { getSchoolOfManagerById } from "./utis.controller";
 
 // manager requests list of classs
-export const getClassList = async (req,res)=>{
+export const getClassList = async (req, res) => {
+  const school = await getSchoolOfManagerById(req.user.id);
+  // find list of classes where school is above school
+  const classList = classModel
+    .find({
+      school: school._id,
+    })
+    .populate("teacher");
+  res.send(classList);
+};
 
-    const school  = await getSchoolOfManagerById(req.user.id);
-      // find list of classes where school is above school
-      classModel.find({
-        school:school._id,
+export const getClassById = async (req, res) => {
+  const { classId } = req.params;
+  const school = getSchoolOfManagerById(req.user.id);
+  // find list of classes where school is above school
 
-      }),
-      populate('teacher')
-    
-}
+  const classList = classModel.findOne({
+    _id: classId,
+    school: school._id,
+  });
+
+  res.send(classList);
+};
+
+export const createClass = async (req, res) => {
+  const school = getSchoolOfManagerById(req.user.id);
+
+  const body = req.body;
+
+  const classItem = await classModel.create({
+    name: body.name,
+    teacher: teacher.body,
+    school: school.body,
+  });
+  res.send(classItem);
+};
+
+export const deleteClass = async (req, res) => {
+  const school = await getSchoolOfManagerById(req.user.id);
+  const { classId } = req.params;
+  const user = classModel.findOneAndDelete({
+    _id: classId,
+    school: school._id,
+  });
+  if (!user) return res.status(400).send({ message: "class not found" });
+  await userModel.updateMany({ class: classId }, { $unset: { class: true } });
+  res.sendStatus(200);
+};
+
+export const updateClass = async (req, res) => {
+  const school = await getSchoolOfManagerById(req.user.id);
+  const { classId } = req.params;
+
+  const user = await classModel.findByIdAndUpdate(
+    {
+      _id: classId,
+      school: school._id,
+    },
+    {
+      $set: {
+        name: req.body.name,
+        teacher: req.body.teacher,
+      },
+    }
+  );
+  if (!user) return res.status(400).send({ message: "class not found" });
+  res.sendStatus(200)
+};
