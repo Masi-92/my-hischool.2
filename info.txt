@@ -3,3 +3,7 @@ rm -rf node_modules package-lock.json
 
 2-
 npm install
+
+
+populate() ist eine Funktion in Mongoose, die verwendet wird, um eine Referenz auf ein anderes Dokument in einer anderen Sammlung zu ersetzen
+populate ersetzt automatisch den angegebenen Pfad im Dokument durch Dokumente aus anderen Kollektionen.

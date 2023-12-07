@@ -17,6 +17,8 @@ role:{
     enum:[Roles.MANAGER,Roles.PARENT,Roles.TEACHER,Roles.SUPER_ADMIN],
     default:Roles.PARENT
 },
+phone:String,
+image:String,
 
 profile:{
 
