@@ -7,3 +7,11 @@ fullName:Joi.string().required(),
 image:Joi.string(),
 
 })
+
+export const updateTeacherSchema =Joi.object({
+    email:Joi.string().email(),
+    password:Joi.string().min(6),
+    fullName:Joi.string(),
+    phone:Joi.string(),
+    image:Joi.string()
+})
