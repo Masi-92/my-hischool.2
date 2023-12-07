@@ -1,4 +1,4 @@
-import {Schema, model, schema} from "mongoose";
+import {Schema, model} from "mongoose";
 
 export const Roles={
     PARENT: "parent",

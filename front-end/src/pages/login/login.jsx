@@ -16,22 +16,21 @@ const [email,setEmail] = useState("");
 const [password,setPassword]= useState("");
 const dispatch =useDispatch();
 
-
-function handleLogin () {
-    const {error} = loginSchema.validate({username:email,password});
-    if(error) return toast.warn(error.message);
-    AuthApi.login(email,password)
-    .then((res)=>{
-        api.defaults.headers.token = res.data.token
-        dispatch(
-            login({
-                token:res.data.token,
-                role: res.data.role,
-            fullName: res.data.fullName,
-            })
-        );
+function handleLogin() {
+  const { error } = loginSchema.validate({ username: email, password });
+  if (error) return toast.warn(error.message);
+  AuthApi.login(email, password)
+    .then((res) => {
+      api.defaults.headers.token = res.data.token
+      dispatch(
+        login({
+          token: res.data.token,
+          role: res.data.role,
+          fullName: res.data.fullName,
+        })
+      );
     })
-    .catch((err)=>toast.error(err))
+    .catch((err) => toast.error(err));
 }
 
   return (
