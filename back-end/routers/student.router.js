@@ -1,0 +1,41 @@
+import { Router } from "express";
+import {
+  activate,
+  createStudent,
+  deleteStudent,
+  getStudentById,
+  getStudents,
+  updateStudent,
+} from "../controller/student.controller.js";
+
+import { auth } from "../middleware/auth.js";
+import { hasRole } from "../middleware/role";
+import { validate } from "../middleware/validate.middleware.js";
+import { Roles } from "../models/user.model";
+import {
+  createStudentByManagerSchema,
+  updateStudentByManagerSchema,
+} from "../middleware/validate.middleware.js";
+
+const router = Router();
+
+router.get("/", auth.hasRole(Roles.MANAGER), getStudents);
+router.get("/:id", auth, hasRole(Roles.MANAGER), getStudentById);
+router.post(
+  "/",
+  auth,
+  hasRole(Roles.MANAGER),
+  validate(createStudentByManagerSchema),
+  createStudent
+);
+router.delete("/:studentId", auth, hasRole(Roles.MANAGER), deleteStudent);
+router.put(
+  "/:studentId",
+  auth,
+  hasRole(Roles.MANAGER),
+  validate(updateStudentByManagerSchema),
+  updateStudent
+);
+router.put("activate/:studentId", auth, hasRole(Roles.MANAGER), activate);
+
+export default router;
