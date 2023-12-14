@@ -1,16 +1,14 @@
-import {Schema, model} from "mongoose";
+import { Schema, model } from "mongoose";
 
 const schoolSchema = new Schema({
-name:String,
-address:String,
-tel:String,
-email:{
-    type:Schema.Types.ObjectId,
-    ref:"user"
-}
-
+  name: String,
+  address: String,
+  tel: String,
+  email: String,
+  admin: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+  },
 });
 
-
-export default model("school", schoolSchema)
-
+export default model("school", schoolSchema);
