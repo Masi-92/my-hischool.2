@@ -7,20 +7,19 @@ import {
   getStudents,
   updateStudent,
 } from "../controller/student.controller.js";
-
 import { auth } from "../middleware/auth.js";
-import { hasRole } from "../middleware/role";
+import { hasRole } from "../middleware/role.js";
 import { validate } from "../middleware/validate.middleware.js";
-import { Roles } from "../models/user.model";
+import { Roles } from "../models/user.model.js";
 import {
   createStudentByManagerSchema,
   updateStudentByManagerSchema,
-} from "../middleware/validate.middleware.js";
+} from "../validation/student.schema.js";
 
 const router = Router();
 
-router.get("/", auth.hasRole(Roles.MANAGER), getStudents);
-router.get("/:id", auth, hasRole(Roles.MANAGER), getStudentById);
+router.get("/", auth, hasRole(Roles.MANAGER,Roles.TEACHER), getStudents);
+router.get("/:id", auth, hasRole(Roles.MANAGER,Roles.TEACHER), getStudentById);
 router.post(
   "/",
   auth,
@@ -36,6 +35,6 @@ router.put(
   validate(updateStudentByManagerSchema),
   updateStudent
 );
-router.put("activate/:studentId", auth, hasRole(Roles.MANAGER), activate);
+router.put("/activate/:studentId", auth, hasRole(Roles.MANAGER), activate);
 
 export default router;
