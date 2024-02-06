@@ -1,5 +1,5 @@
 import { Add, ChevronLeft, ChevronRight } from "@mui/icons-material";
-import { ButtonBase, IconButton } from "@mui/material";
+import { ButtonBase, IconButton, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import React, { useMemo } from "react";
 import style from "./calendar.module.scss";
@@ -46,7 +46,7 @@ const Calendar = ({  data, month,setMonth, handleAddEvent, renderEvent,title }) 
   return (
     <div>
       <div className={style.pageHeader}>
-        <h1>{title} - {monthLabel}</h1>
+        <Typography variant="h1">{title} - {monthLabel}</Typography>
         <IconButton onClick={handlePrevMonth}>
           <ChevronLeft></ChevronLeft>
         </IconButton>

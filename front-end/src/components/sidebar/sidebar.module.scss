@@ -1,8 +1,35 @@
 .link {
   color: unset;
   text-decoration: unset;
+<<<<<<< HEAD
 
+=======
+>>>>>>> masi
 }
 .link.active {
   color: red;
 }
+<<<<<<< HEAD
+=======
+
+.school {
+  margin-top: auto;
+  margin-left: 01rem;
+  margin-right: 01rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgb(47, 78, 2);
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  font-weight: bold;
+  color: #777;
+
+  a {
+    color: unset;
+  }
+}
+>>>>>>> masi

@@ -11,8 +11,6 @@ export async function seedFirstSchool() {
     fullName: "admin admini",
     role: Roles.MANAGER,
   });
-
-  
   const school = await schoolModel.create({
     name: "Shahid mam merkel",
     address: "some address",
@@ -27,3 +25,15 @@ export async function seedClass() {
   const teacher = "6561c13953dd4bcf2bcd0042";
   await classModel.create({ name: "Class A", school, teacher });
 }
+
+export async function seedSuperAdmin() {
+  const hashedPassword = await hashPassword("123456");
+
+  await userModel.create({
+    email: "superAdmin@gmail.com",
+    password: hashedPassword,
+    fullName: "Super Admin",
+    role: Roles.SUPER_ADMIN,
+  });
+}
+import mongoose from "mongoose";

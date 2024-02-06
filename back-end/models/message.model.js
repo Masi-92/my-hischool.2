@@ -17,9 +17,28 @@ const schema = new Schema(
       ref: "school",
       required: true,
     },
+    type: {
+      type: String,
+      enum: ["text", "file"],
+      default: "text",
+    },
     pv: Boolean,
+    receiver : {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    }
   },
   { timestamps: true }
 );
 
 export default model("message", schema);
+
+
+// school has value 
+// class = no value 
+// pv = false       =>>>>>>> forum school
+
+// school has value 
+// class  has value 
+// pv = false       =>>>>>>> forum class
+

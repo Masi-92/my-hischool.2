@@ -19,6 +19,7 @@ const ClassForm = () => {
   const [teacher, setTeacher] = useState("");
   const navigate = useNavigate();
   const [teachers, setTeachers] = useState([]);
+  const { t } = useTranslation("translation", { keyPrefix: "classForm" });
 
   useEffect(() => {
     TeachersApi.getTeachers()
@@ -48,7 +49,7 @@ const ClassForm = () => {
       };
       ClassesApi.updateClass(classId, body)
         .then(() => {
-          toast.success("class updated");
+          toast.success(t("classUpdated"));
           navigate(-1);
         })
         .catch((err) => toast.error(err));
@@ -58,7 +59,7 @@ const ClassForm = () => {
         teacher,
       })
         .then(() => {
-          toast.success("class added");
+          toast.success(t("classAdded"));
           navigate(-1);
         })
         .catch((err) => toast.error(err));
@@ -68,20 +69,20 @@ const ClassForm = () => {
   return (
     <Card className={style.card}>
       <header>
-        <h1>{classId ? "Edit Class" : "Add Class"}</h1>
+        <h1>{classId ? t("titleEdit") : t("titleCreate")}</h1>
       </header>
       <form>
         <TextField
           value={name}
           onChange={(e) => setName(e.target.value)}
-          label="Name"
-          placeholder="name"
+          label={t("name")}
+          placeholder={t("name")}
         ></TextField>
         <FormControl fullWidth>
           <InputLabel>Teacher</InputLabel>
           <Select
             value={teacher}
-            label="Teacher"
+            label={t("teacher")}
             onChange={(e) => setTeacher(e.target.value)}
           >
             {teachers.map((item) => (
@@ -90,7 +91,7 @@ const ClassForm = () => {
           </Select>
         </FormControl>
         <Button onClick={handleSubmit} type="submit" variant="contained">
-          Submit
+          {t("submit")}
         </Button>
       </form>
     </Card>

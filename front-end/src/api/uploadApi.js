@@ -1,9 +1,7 @@
-import myAxios from "/api";
+import myAxios from "./api";
 
-export const UploadApi={
-
-    upload(formData){
-
-        return myAxios.post("/file/upload",formData)
-    }
-}
+export const UploadApi = {
+  upload(formData) {
+    return myAxios.post("/file/upload", formData);
+  },
+};

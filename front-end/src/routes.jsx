@@ -15,11 +15,22 @@ import Students from "./pages/manager/students/students";
 import TeacherStudents from "./pages/teacher/students/students";
 import TeacherForm from "./pages/manager/teacherForm/teacherForm";
 import Teachers from "./pages/manager/teachers/teachers";
-import FeedParent from "./pages/parent/feed/feed";
 import Register from "./pages/register/register";
-import Feed from "./pages/teacher/feed/feed";
+import ParentCalendar from "./pages/parent/calendar/calendar";
 import { Roles } from "./store/slice/auth.slice";
 import Forum from "./pages/forum/forum";
+import PV from "./pages/forum copy/pv";
+import SickRest from "./pages/parent/sickRest/sickRest";
+import SickRestManager from "./pages/manager/sickRest/sickRest";
+import ParentFeed from "./pages/parent/newsFeed/newsFeed";
+import NewsFeedDetail from "./pages/parent/newsFeed/newsFeedDetail/newsFeedDetail";
+import ParentEvent from "./pages/parent/newsFeed copy/events";
+import EventDetail from "./pages/parent/newsFeed copy/eventDetail/eventDetail";
+import FormContact from "./components/contact/contactform";
+import EditProfile from "./pages/editProfile/editProfile";
+import ErrorPage from "./components/404/404";
+import SchoolForm from "./pages/admin/schoolForm/schoolForm";
+
 
 const AppRoutes = () => {
   const { isAuthenticated, role } = useSelector((store) => store.auth);
@@ -83,6 +94,9 @@ const AppRoutes = () => {
             <Route path="events" element={<Events />}></Route>
             <Route path="feed" element={<NewsFeed />}></Route>
             <Route path="forum" element={<Forum />}></Route>
+            <Route path="editProfile" element={<EditProfile />}></Route>
+            <Route path="sickRest" element={<SickRestManager />}></Route>
+
             <Route
               path=""
               element={<Navigate to="/manager/teachers" />}
@@ -97,6 +111,9 @@ const AppRoutes = () => {
             <Route path="feed" element={<NewsFeed />}></Route>
             <Route path="events" element={<Events />}></Route>
             <Route path="students" element={<TeacherStudents />}></Route>
+            <Route path="forum" element={<Forum />}></Route>
+            <Route path="sick" element={<SickRestManager />}></Route>
+            <Route path="editProfile" element={<EditProfile />}></Route>
             <Route path="" element={<Navigate to="/teacher/feed" />}></Route>
           </Route>
           <Route
@@ -105,8 +122,14 @@ const AppRoutes = () => {
               hasRole(Roles.PARENT) ? <Layout /> : <Navigate to="/login" />
             }
           >
-            <Route path="feed" element={<FeedParent />}></Route>
-            <Route path="preRegister" element={<p>register parent</p>}></Route>
+            <Route path="feed" element={<ParentFeed/>}></Route>
+            <Route path="feed/:id" element={<NewsFeedDetail/>}></Route>
+            <Route path="forum" element={<Forum />}></Route>
+            <Route path="calendar" element={<ParentCalendar />}></Route>
+            <Route path="sickRest" element={<SickRest />}></Route>
+            <Route path="events" element={<ParentEvent />}></Route>
+            <Route path="events/:id" element={<EventDetail />}></Route>
+            <Route path="editProfile" element={<EditProfile />}></Route>
             <Route path="" element={<Navigate to="/parent/feed" />}></Route>
           </Route>
           <Route
@@ -116,8 +139,18 @@ const AppRoutes = () => {
             }
           >
             <Route path="schools" element={<Schools />}></Route>
+            <Route path="schools/add" element={<SchoolForm />}></Route>
+            <Route path="schools/edit/:id" element={<SchoolForm />}></Route>
             <Route path="" element={<Navigate to="/admin/schools" />}></Route>
           </Route>
+          <Route
+            path="/pv/*"
+            element={isAuthenticated ? <Layout /> : <Navigate to="/login" />}
+          >
+            <Route path=":id" element={<PV />}></Route>
+          </Route>
+          <Route path="*" element={<ErrorPage/>  }></Route>
+          <Route path="/FormContact" element={<FormContact/>  }></Route>
         </Routes>
       )}
     </>

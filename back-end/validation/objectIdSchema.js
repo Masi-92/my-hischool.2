@@ -1,4 +1,4 @@
-import Joi from 'joi';
-
+import Joi from 'joi'
 import JoiObjectId from 'joi-objectid';
-Joi.objectId= JoiObjectId(Joi)
+
+Joi.objectId = JoiObjectId(Joi)

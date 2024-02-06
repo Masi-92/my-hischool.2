@@ -1,12 +1,28 @@
 .layout {
   height: 100vh;
   display: grid;
+<<<<<<< HEAD
   grid-template-columns: 240px 1fr;
+=======
+
+>>>>>>> masi
   grid-template-rows: max-content 1fr;
 
   & > main {
     padding: 1rem;
+<<<<<<< HEAD
     background-color: #ebebeb;
     overflow-y: auto;
   }
 }
+=======
+    background: url("../../image/shapelined-_JBKdviweXI-unsplash.jpg");
+    overflow-y: auto;
+    background-color: #424242;
+  }
+}
+
+[data-theme="dark"] .layout > main {
+  background: #777;
+}
+>>>>>>> masi

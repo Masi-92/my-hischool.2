@@ -16,17 +16,18 @@ import { UploadApi } from "../../../api/uploadApi";
 import style from "./style.module.scss";
 import { ClassesApi } from "../../../api/classesApi";
 import InputImage from "../../../components/inputImage/inputImage";
+import dayjs from "dayjs";
 
 const StudentForm = () => {
   const [classList, setClassList] = useState([]);
   const [form, setForm] = useState({
-    email: "jack@gmail.com",
-    fullName: "jack",
-    password: "123456",
-    phone: "065632586",
+    email: "",
+    fullName: "",
+    password: "",
+    phone: "",
     image: "",
-    birthDay: "2000/01/01",
-    address: "some address",
+    birthDay: "",
+    address: "",
     class: "",
   });
 
@@ -49,6 +50,9 @@ const StudentForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const age = Math.abs(dayjs(form.birthDay).diff(dayjs(),"year"))
+    if(age<5)
+    return toast.warn("birthDay is incorrect")
     if (studentId) {
       StudentsApi.updateStudent(studentId, form)
         .then(() => {
@@ -125,6 +129,7 @@ const StudentForm = () => {
           name="birthDay"
           onChange={handleChangeForm}
           label="BirthDay"
+          type="date"
           placeholder="BirthDay"
         ></TextField>
 

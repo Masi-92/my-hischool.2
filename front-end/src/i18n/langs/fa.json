@@ -1,0 +1,13 @@
+{
+    "translation": {
+        "schoolList": "لیست مدارس",
+        "sidebar": {
+            "newsFeed": "اخبار جدید",
+            "forum": "تالار گفتگو",
+            "calendar": "تقویم",
+            "teacherPv": "خصوصی معلم",
+            "sickRest": "گزارش بیماری",
+            "events": "رویداد ها"
+        }
+    }
+}
