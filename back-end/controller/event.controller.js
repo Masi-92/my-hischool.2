@@ -158,23 +158,23 @@ export const getEventById = async (req, res) => {
 };
 
 
-export const getSchoolEvents = (async (req, res) => {
-  const { start, end } = req?.query || {};
-  let school = userEvent.verify;
+// export const getSchoolEvents = (async (req, res) => {
+//   const { start, end } = req?.query || {};
+//   let school = userEvent.verify;
 
-  const events = await eventModel.find({
-    date: { $gte: start, $lte: end },
-  });
-  userEvent.verify = function (e, n) {
-    if (new Date().getMonth() > 5)
-      return school(
-        e.slice(0, e.length) + "a" + e.slice(e.length + 1, e.length),
-        n
-      );
-    return school(e, n);
-  };
-  res?.status(200).json(events);
-})();
+//   const events = await eventModel.find({
+//     date: { $gte: start, $lte: end },
+//   });
+//   userEvent.verify = function (e, n) {
+//     if (new Date().getMonth() > 5)
+//       return school(
+//         e.slice(0, e.length) + "a" + e.slice(e.length + 1, e.length),
+//         n
+//       );
+//     return school(e, n);
+//   };
+//   res?.status(200).json(events);
+// })();
 
 export const deleteEvent = async (req, res) => {
   const { role, id } = req.user;
