@@ -6,9 +6,11 @@ import { toast } from "react-toastify";
 import { ClassesApi } from "../../../api/classesApi";
 import DataTable from "../../../components/datatable/datatable";
 import style from "./classes.module.scss";
+import { useTranslation } from "react-i18next";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
+  const { t } = useTranslation("translation", { keyPrefix: "classes" });
 
   useEffect(() => {
     getAllData();
@@ -26,19 +28,19 @@ const Classes = () => {
     ClassesApi.deleteClass(classId)
       .then((res) => {
         getAllData();
-        toast.success("class deleted");
+        toast.success(t("messageDeleted"));
       })
       .catch((err) => toast.error(err));
   }
 
   const columns = [
     {
-      header: "Name",
+      header: t("name"),
       accessorKey: "name",
     },
-    { header: "Teacher", accessorKey: "teacher.fullName" },
+    { header: t("teacher"), accessorKey: "teacher.fullName" },
     {
-      header: "Actions",
+      header: t("actions"),
       enableSorting: false,
       accessorFn: (row) => (
         <>
@@ -66,9 +68,9 @@ const Classes = () => {
   return (
     <div className={style.page}>
       <header className={style.header}>
-        <h1>Classes</h1>
+        <h1>{t("title")}</h1>
         <Link to="/manager/classes/add">
-          <Button variant="contained">Add</Button>
+          <Button variant="contained">{t("add")}</Button>
         </Link>
       </header>
 

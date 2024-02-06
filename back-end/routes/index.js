@@ -6,7 +6,11 @@ import studentRoute from "./student.route.js";
 import classRoute from "./class.route.js";
 import eventsRoute from "./event.route.js";
 import feedRoute from "./feed.route.js";
-import messageRoute from "./message.route.js";
+import forumRoute from "./forum.route.js";
+import pvRoute from "./pv.route.js";
+import sickRoute from "./sick.route.js";
+import eventAgreementRoute from "./eventAgreement.route.js";
+import schoolRoute from "./school.route.js";
 
 const router = Router();
 
@@ -15,8 +19,12 @@ router.use("/manageTeacher", manageTeacherRoutes);
 router.use("/class", classRoute);
 router.use("/student", studentRoute);
 router.use("/file", fileRoute);
-router.use("/events", eventsRoute)
-router.use("/feed", feedRoute)
-router.use("/message", messageRoute)
+router.use("/events", eventsRoute);
+router.use("/feed", feedRoute);
+router.use("/forum", forumRoute);
+router.use("/pv", pvRoute);
+router.use("/sickRest", sickRoute);
+router.use("/eventAgreement", eventAgreementRoute);
+router.use("/school", schoolRoute);
 
 export default router;

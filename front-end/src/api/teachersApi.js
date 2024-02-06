@@ -1,21 +1,19 @@
 import myAxios from "./api";
-export const teachersApi = {
-  getTeacher() {
+
+export const TeachersApi = {
+  getTeachers() {
     return myAxios.get("/manageTeacher");
   },
   getTeacherById(id) {
-    return myAxios.get(`/managerTeacher/${id}`);
+    return myAxios.get(`/manageTeacher/${id}`);
   },
-
   addTeacher(body) {
-    return myAxios.get("mangerTeacher", body);
+    return myAxios.post("/manageTeacher", body);
   },
-
   deleteTeacher(id) {
-    return myAxios.delete(`/managerTeacher/${id}`);
+    return myAxios.delete(`/manageTeacher/${id}`);
   },
-
-  updateTEacher(id, body) {
-    return myAxios.put(`/managerTeacher/${id}`, body);
+  updateTeacher(id, body) {
+    return myAxios.put(`/manageTeacher/${id}`, body);
   },
 };

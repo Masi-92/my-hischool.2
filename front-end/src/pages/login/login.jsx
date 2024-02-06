@@ -6,27 +6,36 @@ import { AuthApi } from "../../api/authApi.js";
 import { login } from "../../store/slice/auth.slice.js";
 import { loginSchema } from "../../validation/auth.validation.jsx";
 import style from "./login.module.scss";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const { t } = useTranslation("translation", { keyPrefix: "login" });
 
-  function handleLogin() {
+  function handleLogin(e) {
+    e.preventDefault();
     const { error } = loginSchema.validate({ username: email, password });
     if (error) return toast.warn(error.message);
     AuthApi.login(email, password)
       .then((res) => {
-        api.defaults.headers.token = res.data.token
+        api.defaults.headers.token = res.data.token;
         dispatch(
-          login(res.data)
+          login({
+            token: res.data.token,
+            role: res.data.role,
+            fullName: res.data.fullName,
+            userId: res.data.userId,
+            image: res.data.image,
+          })
         );
       })
       .catch((err) => toast.error(err));
   }
 
   return (
-    <div className={style.login}>
+    /*   <div className={style.login}>
       <div className={style.login_form}>
         <h1>Login</h1>
         <input
@@ -42,6 +51,43 @@ const Login = () => {
           placeholder="🔒"
         />
         <button onClick={handleLogin}>Login</button>
+      </div>
+    </div> */
+    <div className={style.logo_container}>
+      <div className={style.login_box}>
+        <iframe
+          className={style.frame}
+          src="https://lottie.host/embed/46e1efc7-148b-4537-92d0-1054c1188603/dGAswJ2qhq.json"
+        ></iframe>
+        <form className={style.form}>
+          <div className={style.user_box}>
+            <input
+              type="text"
+              name=""
+              required=""
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label>{t("username")}</label>
+          </div>
+          <div className={style.user_box}>
+            <input
+              type="password"
+              name=""
+              required=""
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <label>{t("password")}</label>
+          </div>
+          <button className={style.onclick} onClick={handleLogin}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            {t("submit")}
+          </button>
+        </form>
       </div>
     </div>
   );

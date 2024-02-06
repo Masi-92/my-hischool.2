@@ -1,9 +1,11 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import UserModel from "../models/user.model.js";
+import UserModel, { Roles } from "../models/user.model.js";
 import { hashPassword } from "./hash.controller.js";
 import classModel from "../models/class.model.js";
 import userModel from "../models/user.model.js";
+import schoolModel from "../models/school.model.js";
+import { getSchoolIdOfTeacherById } from "./utils.controller.js";
 
 export async function login(req, res) {
   const { email, password } = req.body;
@@ -17,12 +19,44 @@ export async function login(req, res) {
   if (!isMatch) {
     return res.status(400).send({ message: "Invalid password" });
   }
+
+  if (user.role === Roles.MANAGER) {
+    const school = await schoolModel.findOne({
+      admin: user._id,
+      deleted: { $ne: true },
+    });
+    if (!school)
+      return res.status(400).send({ message: "your school not found" });
+  } else if (user.role === Roles.TEACHER) {
+    const schoolId = await getSchoolIdOfTeacherById(user._id);
+    const school = await schoolModel.findOne({
+      _id: schoolId,
+      deleted: { $ne: true },
+    });
+    if (!school)
+      return res.status(400).send({ message: "your school not found" });
+  } else if (user.role === Roles.PARENT) {
+    const parent = await userModel.findById(user._id);
+    const school = await schoolModel.findOne({
+      _id: parent.school,
+      deleted: { $ne: true },
+    });
+    if (!school)
+      return res.status(400).send({ message: "your school not found" });
+  }
+
   const token = jwt.sign(
     { id: user._id, email, role: user.role },
     process.env.JWT_SECRET,
     { expiresIn: "1d" }
   );
-  res.send({ token, role: user.role, fullName: user.fullName,image : user.image });
+  res.send({
+    token,
+    role: user.role,
+    fullName: user.fullName,
+    image: user.image,
+    userId: user._id,
+  });
 }
 
 export async function register(req, res) {
@@ -46,4 +80,49 @@ export async function register(req, res) {
   res.send({ message: "User created" });
 }
 
-//test
+export const getUserDetail = async (req, res) => {
+  const { id } = req.params;
+  const user = await userModel.findById(id).select("fullName role image");
+  res.send(user);
+};
+
+export const editProfile = async (req, res) => {
+  const body = req.body;
+  const userId = req.user.id;
+
+  const user = await userModel.findByIdAndUpdate(
+    userId,
+    { $set: body },
+    { new: true }
+  );
+  if (!user) return res.status(400).send({ message: "user not found" });
+
+  res.send(user);
+};
+
+export const changePassword = async (req, res) => {
+  const { oldPassword, newPassword } = req.body;
+  const userId = req.user.id;
+
+  const user = await userModel.findById(userId);
+  if (!user) return res.status(400).send({ message: "user not found" });
+
+  const isMatch = await bcrypt.compare(oldPassword, user.password);
+  if (!isMatch)
+    return res.status(400).send({ message: "old password is incorrect" });
+
+  const newPasswordHashed = await bcrypt.hash(newPassword, 10);
+  user.password = newPasswordHashed;
+  await user.save();
+
+  res.sendStatus(200);
+};
+
+export const getProfile = async (req, res) => {
+  const userId = req.user.id;
+
+  const user = await userModel.findById(userId);
+  if (!user) return res.status(400).send({ message: "user not found" });
+
+  res.send(user);
+};

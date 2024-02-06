@@ -105,6 +105,7 @@ const ModalFeed = ({ open, onClose, date, updateFeeds, feed }) => {
         <TextField
           value={form.description}
           minRows={3}
+          maxRows={6}
           name="description"
           label="Description"
           onChange={handleChangeForm}

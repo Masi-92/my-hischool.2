@@ -27,13 +27,17 @@ export const getStudents = async (req, res) => {
   } else if (role === Roles.TEACHER) {
     const schoolId = await getSchoolIdOfTeacherById(id);
     const classObj = await classModel.findOne({ teacher: id });
-
-    const students = await userModel.find({
-      active : true,
+    const teacher = await userModel.findById(id);
+    if (!teacher.freeTeacher && !classObj)
+      return res.status(400).send({ message: "you don't have class" });
+    const filterBody = {
+      active: true,
       role: Roles.PARENT,
       school: schoolId,
-      class: classObj._id,
-    });
+    };
+    if (!teacher.freeTeacher) filterBody.class = classObj._id;
+
+    const students = await userModel.find(filterBody);
     res.send(students);
   }
 };
@@ -138,3 +142,24 @@ export async function activate(req, res) {
   if (!user) return res.status(400).send({ message: "user not found" });
   res.sendStatus(200);
 }
+
+export const getMyTeacher = async (req, res) => {
+  const { id } = req.user;
+
+  const parent = await userModel
+    .findById(id)
+    .populate({ path: "class", populate: { path: "teacher" } });
+  if (!parent?.class?.teacher)
+    return res.status(400).send({ message: "not found" });
+
+  // const parent = await userModel.findById(id);
+  // if (!parent) return res.status(400).send({ message: "user not found" });
+
+  // const classObj = await classModel.findById(parent.class);
+  // if (!classObj) return res.status(400).send({ message: "class not found" });
+
+  // const teacher = await userModel.findById(classObj.teacher);
+  // if (!teacher) return res.status(400).send({ message: "teacher not found" });
+
+  res.send(parent.class.teacher);
+};

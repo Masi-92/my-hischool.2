@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "021d068e-c80e-43bb-94b5-8282cb5cab32",
+		"name": "hiSchool",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6272617"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"teacher1@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3010/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3010",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "teacher",
+					"item": [
+						{
+							"name": "getTeachers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjFjMTM5NTNkZDRiY2YyYmNkMDA0MiIsImVtYWlsIjoidGVhY2hlcjFAZ21haWwuY29tIiwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE3MDA5MDUzMTAsImV4cCI6MTcwMDk5MTcxMH0.rf2dpCC8iK--AdHSjYhXfbkKUcgZoWR-AFjWF3VgK1E",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3010/api/manageTeacher",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3010",
+									"path": [
+										"api",
+										"manageTeacher"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add teacher",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjFiNzY2ZTg2ZWY0YjgxNjA0Y2M4YiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzAwOTA0OTQ4LCJleHAiOjE3MDA5OTEzNDh9.v7UuBOhRAZYtQ7BBgceniGgNf0uITar7XkmgX7WvAb0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"teacher1@gmail.com\",\r\n    \"password\":\"123456\",\r\n    \"fullName\":\"jack teacher\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3010/api/manageTeacher",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3010",
+									"path": [
+										"api",
+										"manageTeacher"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

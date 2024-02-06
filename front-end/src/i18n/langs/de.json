@@ -1,0 +1,13 @@
+{
+    "translation": {
+        "schoolList": "Schulliste",
+        "sidebar": {
+            "newsFeed": "de News Feed",
+            "forum": "de Forum",
+            "calendar": "de Calendar",
+            "teacherPv": "de Teacher PV",
+            "sickRest": "de Sick Rest",
+            "events": "de Events"
+        }
+    }
+}

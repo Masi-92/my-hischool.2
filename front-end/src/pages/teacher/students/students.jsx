@@ -55,7 +55,7 @@ const Students = () => {
       enableSorting: false,
       accessorFn: (row) => (
         <>
-          <Link to={`/teacher/pv/${row._id}`}>
+          <Link to={`/pv/${row._id}`}>
             <IconButton >
               <Chat />
             </IconButton>
