@@ -4,14 +4,17 @@ import express from "express";
 import mongoose from "mongoose";
 import router from "./routes/index.js";
 import { seedSuperAdmin } from "./seed.js";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
 
 const PORT = process.env.PORT;
 const DB_URL = process.env.DB_URL;
 const app = express();
-setupDb()
+
 app.use(cors());
 app.use(express.static(__dirname + "/client"))
 
