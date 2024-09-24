@@ -1,4 +1,4 @@
-import React from "react";
+
 import AppRoutes from "./routes";
 import { ThemeProvider } from "./theme";
 import { useSelector } from "react-redux";
