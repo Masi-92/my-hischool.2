@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import router from "./routes/index.js";
-import { seedSuperAdmin } from "./seed.js";
+import { seedFirstSchool, seedSuperAdmin } from "./seed.js";
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -31,9 +31,11 @@ mongoose
   .then(() => {
     console.log("Connected to MongoDB with mongoose");
 
-    // seedFirstSchool()
+   //seedFirstSchool()
+
+   //console.log(seedFirstSchool)
     // seedClass()
-    // seedSuperAdmin()
+    //seedSuperAdmin()
   })
   .catch(() => {
     console.log("Connection failed");
