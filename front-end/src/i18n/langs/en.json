@@ -1,134 +1,134 @@
 {
-    "translation": {
-        "sidebar": {
-            "newsFeed": "News Feed",
-            "forum": "Forum",
-            "calendar": "Calendar",
-            "teacherPv": "Teacher PV",
-            "sickRest": "Sick Rest",
-            "events": "Events",
-            "students": "Students",
-            "teachers": "Teachers",
-            "classList": "Classes",
-            "schools": "Schools"
-        },
-        "404": {
-            "title": "Looks like you're lost",
-            "description": "The page you are looking for is not available!",
-            "cta": "Go to Home"
-        },
-        "contact": {
-            "title": "Contact us",
-            "inputName": "Name",
-            "inputEmail": "Email",
-            "inputMessage": "Say Hello",
-            "send": "Send",
-            "resend": "Resend"
-        },
-        "role": {
-            "parent": "Parent",
-            "teacher": "Teacher",
-            "manager": "Manager",
-            "admin": "Admin"
-        },
-        "header": {
-            "profile": "Profile",
-            "logout": "Logout"
-        },
-        "schoolForm": {
-            "titleEdit": "Edit School",
-            "titleCreate": "Create School",
-            "schoolDetail": "School Detail",
-            "inputName": "name",
-            "inputTel": "tel",
-            "inputEmail": "email",
-            "inputAddress": "address",
-            "managerDetail": "Manager Detail",
-            "inputManagerEmail": "Manager Email",
-            "inputManagerPassword": "Manager Password",
-            "inputManagerFullName": "Manager FullName",
-            "inputManagerPhone": "Manager Phone",
-            "submit": "Submit"
-        },
-        "schools": {
-            "name": "Name",
-            "address": "Address",
-            "tel": "Tel",
-            "email": "Email",
-            "manager": "Manager",
-            "actions": "Actions",
-            "title": "School List",
-            "addBtn": "add"
-        },
-        "editProfile": {
-            "profileUpdated": "Profile Updated",
-            "passwordNotMatch": "passwords are not match",
-            "passwordUpdated": "password updated",
-            "title": "Edit Profile",
-            "fullName": "FullName",
-            "phone": "Phone",
-            "save": "save",
-            "changePasswordTitle": "Change Password",
-            "oldPassword": "Old Password",
-            "newPassword": "New Password",
-            "confirmNewPassword": "Confirm New Password"
-        },
-        "forum": {
-            "class": "Class",
-            "school": "School",
-            "writeMessage": "Type a message 🖊"
-        },
-        "landing": {
-            "home": "Home",
-            "aboutUs": "About Us",
-            "work": "Work",
-            "contact": "Contact",
-            "getStarted": "Get Started",
-            "looking": "Looking For Inspiration",
-            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.\n Repellendus odit nihil ullam nesciunt quidem iste, Repellendus\n odit nihil",
-            "button": "Button name"
-        },
-        "login": {
-            "username": "Username",
-            "password": "Password",
-            "submit": "Submit"
-        },
-        "classes": {
-            "messageDeleted": "class deleted",
-            "name": "Name",
-            "teacher": "Teacher",
-            "actions": "Actions",
-            "title": "Classes",
-            "add": "Add"
-        },
-        "classForm": {
-            "classUpdated": "class updated",
-            "classAdded": "class added",
-            "titleEdit": "Edit Class",
-            "titleCreate": "Add Class",
-            "name": "Name",
-            "teacher": "Teacher",
-            "submit": "Submit"
-        },
-        "modalAgreement": {
-            "userImage": "User Image",
-            "user": "User",
-            "class": "Class",
-            "date": "Agreement Date",
-            "title": "Agreement List"
-        },
-        "modalEvent": {
-            "titleEdit": "Update Event",
-            "titleCreate": "Create Event",
-            "title": "Title",
-            "description": "Description",
-            "class": "Class (optional)",
-            "hasConsent": "Has Consent",
-            "submit": "Submit",
-            "all": "All"
-        },
-        "events": {
-            "title": "Events"
-        }
+  "translation": {
+    "sidebar": {
+      "newsFeed": "News Feed",
+      "forum": "Forum",
+      "calendar": "Calendar",
+      "teacherPv": "Teacher PV",
+      "sickRest": "Sick Rest",
+      "events": "Events",
+      "students": "Students",
+      "teachers": "Teachers",
+      "classList": "Classes",
+      "schools": "Schools"
+    },
+    "404": {
+      "title": "Looks like you're lost",
+      "description": "The page you are looking for is not available!",
+      "cta": "Go to Home"
+    },
+    "contact": {
+      "title": "Contact us",
+      "inputName": "Name",
+      "inputEmail": "Email",
+      "inputMessage": "Say Hello",
+      "send": "Send",
+      "resend": "Resend"
+    },
+    "role": {
+      "parent": "Parent",
+      "teacher": "Teacher",
+      "manager": "Manager",
+      "admin": "Admin"
+    },
+    "header": {
+      "profile": "Profile",
+      "logout": "Logout"
+    },
+    "schoolForm": {
+      "titleEdit": "Edit School",
+      "titleCreate": "Create School",
+      "schoolDetail": "School Detail",
+      "inputName": "name",
+      "inputTel": "tel",
+      "inputEmail": "email",
+      "inputAddress": "address",
+      "managerDetail": "Manager Detail",
+      "inputManagerEmail": "Manager Email",
+      "inputManagerPassword": "Manager Password",
+      "inputManagerFullName": "Manager FullName",
+      "inputManagerPhone": "Manager Phone",
+      "submit": "Submit"
+    },
+    "schools": {
+      "name": "Name",
+      "address": "Address",
+      "tel": "Tel",
+      "email": "Email",
+      "manager": "Manager",
+      "actions": "Actions",
+      "title": "School List",
+      "addBtn": "add"
+    },
+    "editProfile": {
+      "profileUpdated": "Profile Updated",
+      "passwordNotMatch": "passwords are not match",
+      "passwordUpdated": "password updated",
+      "title": "Edit Profile",
+      "fullName": "FullName",
+      "phone": "Phone",
+      "save": "save",
+      "changePasswordTitle": "Change Password",
+      "oldPassword": "Old Password",
+      "newPassword": "New Password",
+      "confirmNewPassword": "Confirm New Password"
+    },
+    "forum": {
+      "class": "Class",
+      "school": "School",
+      "writeMessage": "Type a message 🖊"
+    },
+    "landing": {
+      "home": "Home",
+      "aboutUs": "About Us",
+      "work": "Work",
+      "contact": "Contact",
+      "getStarted": "Get Started",
+      "looking": "Looking For Inspiration",
+      "description": "Unsere App bietet ein sicheres Login-System mit drei Benutzerrollen:\n Administrator: Kann Schüler und Lehrer erstellen.\n Lehrer: Erstellen Feeds und Events für ihre Klasse, haben Zugriff auf die Schülerliste und Krankmeldungen.Eltern: Sehen News, Feeds, Events, können zustimmen und Krankmeldungen ihrer Kinder einsehen.",
+      "button": "Button name"
+    },
+    "login": {
+      "username": "Username",
+      "password": "Password",
+      "submit": "Submit"
+    },
+    "classes": {
+      "messageDeleted": "class deleted",
+      "name": "Name",
+      "teacher": "Teacher",
+      "actions": "Actions",
+      "title": "Classes",
+      "add": "Add"
+    },
+    "classForm": {
+      "classUpdated": "class updated",
+      "classAdded": "class added",
+      "titleEdit": "Edit Class",
+      "titleCreate": "Add Class",
+      "name": "Name",
+      "teacher": "Teacher",
+      "submit": "Submit"
+    },
+    "modalAgreement": {
+      "userImage": "User Image",
+      "user": "User",
+      "class": "Class",
+      "date": "Agreement Date",
+      "title": "Agreement List"
+    },
+    "modalEvent": {
+      "titleEdit": "Update Event",
+      "titleCreate": "Create Event",
+      "title": "Title",
+      "description": "Description",
+      "class": "Class (optional)",
+      "hasConsent": "Has Consent",
+      "submit": "Submit",
+      "all": "All"
+    },
+    "events": {
+      "title": "Events"
     }
+  }
 }
