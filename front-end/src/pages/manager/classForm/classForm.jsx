@@ -8,11 +8,12 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ClassesApi } from "../../../api/classesApi";
-import style from "./style.module.scss";
 import { TeachersApi } from "../../../api/teachersApi";
+import style from "./style.module.scss";
 
 const ClassForm = () => {
   const [name, setName] = useState("");

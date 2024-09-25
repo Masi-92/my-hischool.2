@@ -2,10 +2,11 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-import router from "./routes/index.js";
-import { seedFirstSchool, seedSuperAdmin } from "./seed.js";
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import router from "./routes/index.js";
+import { seedSuperAdmin } from "./seed.js";
+
 
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
@@ -26,6 +27,7 @@ app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/client/index.html");
 });
 
+
 mongoose
   .connect(DB_URL)
   .then(() => {
@@ -35,9 +37,11 @@ mongoose
 
    //console.log(seedFirstSchool)
     // seedClass()
-    //seedSuperAdmin()
+    // seedSuperAdmin()
   })
-  .catch(() => {
+  .catch((error) => {
+    console.log(error);
+    
     console.log("Connection failed");
   });
 

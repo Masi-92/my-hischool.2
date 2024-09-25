@@ -23,6 +23,7 @@ const storage = new CloudinaryStorage({
       return file.originalname.substring(
         file.originalname.lastIndexOf(".") + 1
       );
+      
     }, // supports promises as well
     public_id: (req, file) => {
       const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
