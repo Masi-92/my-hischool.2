@@ -85,7 +85,7 @@
       "contact": "Contact",
       "getStarted": "Get Started",
       "looking": "Looking For Inspiration",
-      "description": "Unsere App bietet ein sicheres Login-System mit drei Benutzerrollen:\n Administrator: Kann Schüler und Lehrer erstellen.\n Lehrer: Erstellen Feeds und Events für ihre Klasse, haben Zugriff auf die Schülerliste und Krankmeldungen.Eltern: Sehen News, Feeds, Events, können zustimmen und Krankmeldungen ihrer Kinder einsehen.",
+      "description": "Unsere App bietet ein sicheres Login-System mit drei Benutzerrollen:\n Administrator (Email:admin@gmail.com / Password :123456): Kann Schüler und Lehrer erstellen.\n Lehrer (Email:max@gmail.com / Password:123456): Erstellen Feeds und Events für ihre Klasse, haben Zugriff auf die Schülerliste und Krankmeldungen.Eltern (Email:tom@gmail.com / Password :123456 ): Sehen News, Feeds, Events, können zustimmen und Krankmeldungen ihrer Kinder einsehen.",
       "button": "Button name"
     },
     "login": {
