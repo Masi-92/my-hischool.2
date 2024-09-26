@@ -56,6 +56,8 @@ ul {
 }
 .landing_page header .logo {
   color: #5d5d5d;
+
+
   font-style: italic;
   text-transform: uppercase;
   font-size: 20px;
@@ -146,4 +148,14 @@ ul {
   margin-top: 10px;
 
   border: none;
+}
+.info  p {
+
+  border: #5d5d5d  solid 2px;
+  border-radius: 7px;
+padding: 5%;
+  font-size: 20px!important;
+  box-shadow: 1px 1px 20px rgb(147, 147, 224);
+   
+  
 }

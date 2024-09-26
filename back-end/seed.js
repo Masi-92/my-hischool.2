@@ -12,7 +12,7 @@ export async function seedFirstSchool() {
     role: Roles.MANAGER,
   });
   const school = await schoolModel.create({
-    name: "Shahid mam merkel",
+    name: "some school",
     address: "some address",
     tel: "+5465985265",
     email: "school.merkel@gmail.com",

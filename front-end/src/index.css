@@ -19,10 +19,6 @@ body {
     --dark-code: gold;
 }
 
-* {
-    background-color: light-dark(var(--light-bg), var(--dark-bg));
-    color: light-dark(var(--light-color), var(--dark-color));
-}
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

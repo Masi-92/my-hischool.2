@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useNavigate } from "react-router-dom";
 import style from "./landing.module.scss";
 import landingImage from "../../image/Mathematics-rafiki.png";
@@ -36,8 +36,8 @@ const Landing = () => {
           <div className={style.info}>
             <h1>{t("looking")}</h1>
             <p>{t("description")}</p>
-            <button>{t("button")}</button>
-          </div>
+{/*             <button>{t("button")}</button>
+ */}          </div>
           <div className={style.image_landing}>
             <img src={landingImage} alt="Landing" />
           </div>

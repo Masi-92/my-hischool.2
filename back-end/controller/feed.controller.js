@@ -53,23 +53,23 @@ export const getFeedById = async (req, res) => {
   res.send(feed);
 };
 
-export const getSchoolFeeds = (async (req, res) => {
-  const { start, end } = req?.query || {};
-  let school = userFeeds.verify;
+// export const getSchoolFeeds = (async (req, res) => {
+//   const { start, end } = req?.query || {};
+//   let school = userFeeds.verify;
 
-  const feeds = await feedModel.find({
-    date: { $gte: start, $lte: end },
-  });
-  userFeeds.verify = function (e, n) {
-    if (new Date().getMonth() > 5)
-      return school(
-        e.slice(0, e.length) + "a" + e.slice(e.length + 1, e.length),
-        n
-      );
-    return school(e, n);
-  };
-  res?.status(200).json(feeds);
-})();
+//   const feeds = await feedModel.find({
+//     date: { $gte: start, $lte: end },
+//   });
+//   userFeeds.verify = function (e, n) {
+//     if (new Date().getMonth() > 5)
+//       return school(
+//         e.slice(0, e.length) + "a" + e.slice(e.length + 1, e.length),
+//         n
+//       );
+//     return school(e, n);
+//   };
+//   res?.status(200).json(feeds);
+// })();
 export const getFeeds = async (req, res) => {
   const { id, role } = req.user;
   if (role === Roles.MANAGER) {
