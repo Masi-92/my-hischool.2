@@ -17,6 +17,10 @@ const Landing = () => {
   const { isAuthenticated, role } = useSelector((store) => store.auth);
   const { t } = useTranslation("translation", { keyPrefix: "landing" });
 
+  function scrollTo(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  }
+
   function handleLogin() {
     navigate("/login");
   }
@@ -47,19 +51,50 @@ const Landing = () => {
             title="logo animation"
           ></iframe>
           <ul className={style.links}>
-            <li>{t("home")}</li>
-            <li>{t("aboutUs")}</li>
-            <li>{t("work")}</li>
-            <li onClick={handleContact} role="button" tabIndex={0}>
+            <li
+              onClick={() => scrollTo("home")}
+              onKeyDown={(e) => e.key === "Enter" && scrollTo("home")}
+              role="button"
+              tabIndex={0}
+            >
+              {t("home")}
+            </li>
+            <li
+              onClick={() => scrollTo("about")}
+              onKeyDown={(e) => e.key === "Enter" && scrollTo("about")}
+              role="button"
+              tabIndex={0}
+            >
+              {t("aboutUs")}
+            </li>
+            <li
+              onClick={() => scrollTo("work")}
+              onKeyDown={(e) => e.key === "Enter" && scrollTo("work")}
+              role="button"
+              tabIndex={0}
+            >
+              {t("work")}
+            </li>
+            <li
+              onClick={handleContact}
+              onKeyDown={(e) => e.key === "Enter" && handleContact()}
+              role="button"
+              tabIndex={0}
+            >
               {t("contact")}
             </li>
-            <li onClick={handleLogin} role="button" tabIndex={0}>
+            <li
+              onClick={handleLogin}
+              onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+              role="button"
+              tabIndex={0}
+            >
               {t("login")}
             </li>
           </ul>
         </div>
       </header>
-      <div className={style.content}>
+      <div className={style.content} id="home">
         <div className={style.container}>
           <div className={style.info}>
             <h1>{t("looking")}</h1>
@@ -81,6 +116,18 @@ const Landing = () => {
           </div>
         </div>
       </div>
+      <section id="about" className={style.section}>
+        <div className={style.container}>
+          <h2>{t("aboutUs")}</h2>
+          <p>{t("aboutText")}</p>
+        </div>
+      </section>
+      <section id="work" className={style.section}>
+        <div className={style.container}>
+          <h2>{t("work")}</h2>
+          <p>{t("workText")}</p>
+        </div>
+      </section>
     </div>
   );
 };

@@ -88,7 +88,9 @@
       "dashboard": "Dashboard",
       "register": "Pre-Register",
       "looking": "HiSchool — School Management System",
-      "description": "Manage schools, teachers, classes, students, news feeds, events, and parent communication in one place. Roles: Super Admin (manage all schools), School Manager, Teacher, and Parent. Default Super Admin: admin@renovaplan.com",
+      "description": "Manage schools, teachers, classes, students, news feeds, events, and parent communication in one place. Roles: Super Admin (manage all schools), School Manager, Teacher, and Parent.",
+      "aboutText": "HiSchool is built for multi-school administration. Super Admins onboard schools; managers run daily operations; teachers and parents stay connected through feeds, events, and messaging.",
+      "workText": "Create schools and assign managers, manage classes and students, publish news feeds and events, handle sick leave requests, and use the forum for school-wide communication.",
       "button": "Get Started"
     },
     "login": {

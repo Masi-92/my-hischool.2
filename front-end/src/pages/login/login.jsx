@@ -25,9 +25,13 @@ const Login = () => {
 
   function handleLogin(e) {
     e.preventDefault();
-    const { error } = loginSchema.validate({ email, password });
+    const normalizedEmail = email.trim().toLowerCase();
+    const { error } = loginSchema.validate({
+      email: normalizedEmail,
+      password,
+    });
     if (error) return toast.warn(error.message);
-    AuthApi.login(email, password)
+    AuthApi.login(normalizedEmail, password)
       .then((res) => {
         api.defaults.headers.token = res.data.token;
         dispatch(

@@ -8,16 +8,22 @@ import schoolModel from "../models/school.model.js";
 import { getSchoolIdOfTeacherById } from "./utils.controller.js";
 
 export async function login(req, res) {
-  const { email, password } = req.body;
-  //  active !== false
-  const user = await UserModel.findOne({ email, active: { $ne: false } });
+  const email = String(req.body.email || "")
+    .trim()
+    .toLowerCase();
+  const { password } = req.body;
+
+  const user = await UserModel.findOne({
+    email: { $regex: new RegExp(`^${email.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, "i") },
+    active: { $ne: false },
+  });
 
   if (!user) {
-    return res.status(400).send({ message: "User does not exist" });
+    return res.status(401).send({ message: "Invalid email or password" });
   }
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    return res.status(400).send({ message: "Invalid password" });
+    return res.status(401).send({ message: "Invalid email or password" });
   }
 
   if (user.role === Roles.MANAGER) {

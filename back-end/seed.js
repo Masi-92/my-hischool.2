@@ -3,10 +3,14 @@ import schoolModel from "./models/school.model.js";
 import userModel, { Roles } from "./models/user.model.js";
 import classModel from "./models/class.model.js";
 
-export const SUPER_ADMIN_EMAIL =
-  process.env.SUPER_ADMIN_EMAIL || "admin@renovaplan.com";
-export const SUPER_ADMIN_PASSWORD =
-  process.env.SUPER_ADMIN_PASSWORD || "Admin123456!";
+function getSuperAdminCredentials() {
+  return {
+    email: (process.env.SUPER_ADMIN_EMAIL || "admin@renovaplan.com")
+      .trim()
+      .toLowerCase(),
+    password: process.env.SUPER_ADMIN_PASSWORD || "Admin123456!",
+  };
+}
 
 export async function seedFirstSchool() {
   const hashedPassword = await hashPassword("123456");
@@ -32,9 +36,10 @@ export async function seedClass() {
 }
 
 export async function seedSuperAdmin() {
+  const { email, password } = getSuperAdminCredentials();
+
   const existing = await userModel.findOne({
-    email: SUPER_ADMIN_EMAIL,
-    role: Roles.SUPER_ADMIN,
+    $or: [{ email, role: Roles.SUPER_ADMIN }, { role: Roles.SUPER_ADMIN }],
   });
 
   if (existing) {
@@ -42,10 +47,10 @@ export async function seedSuperAdmin() {
     return;
   }
 
-  const hashedPassword = await hashPassword(SUPER_ADMIN_PASSWORD);
+  const hashedPassword = await hashPassword(password);
 
   await userModel.create({
-    email: SUPER_ADMIN_EMAIL,
+    email,
     password: hashedPassword,
     fullName: "Super Admin",
     role: Roles.SUPER_ADMIN,

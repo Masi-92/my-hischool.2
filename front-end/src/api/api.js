@@ -1,10 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL:
-    process.env.NODE_ENV === "production"
-      ? "/api"
-      : "http://localhost:3010/api",
+  baseURL: "/api",
 });
 
 api.interceptors.request.use((config) => {
@@ -17,8 +14,11 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use(undefined, (error) => {
   if (error.response?.status === 401) {
-    localStorage.clear();
-    window.location.href = "/login";
+    const isLogin = error.config?.url?.includes("/auth/login");
+    if (!isLogin) {
+      localStorage.clear();
+      window.location.href = "/login";
+    }
   }
 
   if (error.response?.data?.message) {
