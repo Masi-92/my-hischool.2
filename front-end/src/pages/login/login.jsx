@@ -1,22 +1,31 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../api/api.js";
 import { AuthApi } from "../../api/authApi.js";
-import { login } from "../../store/slice/auth.slice.js";
+import { login, Roles } from "../../store/slice/auth.slice.js";
 import { loginSchema } from "../../validation/auth.validation.jsx";
 import style from "./login.module.scss";
 import { useTranslation } from "react-i18next";
+
+const panelByRole = {
+  [Roles.MANAGER]: "/manager",
+  [Roles.TEACHER]: "/teacher",
+  [Roles.PARENT]: "/parent",
+  [Roles.SUPER_ADMIN]: "/admin",
+};
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { t } = useTranslation("translation", { keyPrefix: "login" });
 
   function handleLogin(e) {
     e.preventDefault();
-    const { error } = loginSchema.validate({ username: email, password });
+    const { error } = loginSchema.validate({ email, password });
     if (error) return toast.warn(error.message);
     AuthApi.login(email, password)
       .then((res) => {
@@ -30,57 +39,44 @@ const Login = () => {
             image: res.data.image,
           })
         );
+        const panel = panelByRole[res.data.role] || "/";
+        navigate(panel);
       })
-      .catch((err) => toast.error(err));
+      .catch((err) =>
+        toast.error(typeof err === "string" ? err : "Login failed")
+      );
   }
 
   return (
-    /*   <div className={style.login}>
-      <div className={style.login_form}>
-        <h1>Login</h1>
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="👤"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="🔒"
-        />
-        <button onClick={handleLogin}>Login</button>
-      </div>
-    </div> */
     <div className={style.logo_container}>
       <div className={style.login_box}>
         <iframe
           className={style.frame}
           src="https://lottie.host/embed/46e1efc7-148b-4537-92d0-1054c1188603/dGAswJ2qhq.json"
+          title="login animation"
         ></iframe>
-        <form className={style.form}>
+        <form className={style.form} onSubmit={handleLogin}>
           <div className={style.user_box}>
             <input
-              type="text"
-              name=""
-              required=""
+              type="email"
+              name="email"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label>{t("username")}</label>
+            <label>{t("email")}</label>
           </div>
           <div className={style.user_box}>
             <input
               type="password"
-              name=""
-              required=""
+              name="password"
+              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <label>{t("password")}</label>
           </div>
-          <button className={style.onclick} onClick={handleLogin}>
+          <button type="submit" className={style.onclick}>
             <span></span>
             <span></span>
             <span></span>
